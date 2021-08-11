@@ -85,7 +85,16 @@ class AlienInvasion:
         """Create the fleet of aliens"""
         # Make an alien
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width = alien.rect.width #type:ignore
+        available_space_x = self.settings.screen_width
+        number_aliens_x = available_space_x // (2 * alien_width)
+
+        # Create the first row of aliens
+        for alien_number in range(number_aliens_x):
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x #type:ignore
+            self.aliens.add(alien)
 
     def _update_screen(self):
         # Redraw the screen during each pass through the loop.
