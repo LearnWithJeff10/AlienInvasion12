@@ -91,10 +91,15 @@ class AlienInvasion:
 
         # Create the first row of aliens
         for alien_number in range(number_aliens_x):
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x #type:ignore
-            self.aliens.add(alien)
+            self._create_alien(alien_width, alien_number)
+
+    def _create_alien(self, alien_width, alien_number):
+        # Create an alien and put it into the row
+        alien = Alien(self)
+        alien_width = alien.rect.width #type:ignore
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x #type:ignore
+        self.aliens.add(alien)
 
     def _update_screen(self):
         # Redraw the screen during each pass through the loop.
