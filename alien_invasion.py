@@ -134,6 +134,7 @@ class AlienInvasion:
             for alines in collisions.values():
                 self.stats.score += self.settings.alien_points
             self.sb.prep_score()
+            self.sb.check_high_score()
 
         # If there are no aliens left, repopulate fleet
         if not self.aliens:
