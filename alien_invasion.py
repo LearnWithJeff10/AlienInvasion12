@@ -199,7 +199,7 @@ class AlienInvasion:
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
                 # Treat this the same as if the ship got hit
-                self._ship_hit
+                self._ship_hit()
                 break;
 
     def _change_fleet_direction(self):
