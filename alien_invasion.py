@@ -6,7 +6,7 @@ from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
-
+from button import Button
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
 
@@ -33,6 +33,9 @@ class AlienInvasion:
             # Set the background color.
             self.bg_color = (230, 230, 230)
 
+            # Make the play button
+            self.play_button = Button(self, "Play")
+
 
     def run_game(self):
             """Start the main loop for the game."""
@@ -43,7 +46,9 @@ class AlienInvasion:
                     self.ship.update()
                     self._update_bullets()
                     self._update_aliens()
-                    self._update_screen()
+                
+                # Note: I don't think the book had this outside of the if condition
+                self._update_screen()
 
 
     def _check_events(self):
@@ -152,6 +157,8 @@ class AlienInvasion:
         for bullet in self.bullets:
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()
