@@ -131,7 +131,8 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         if collisions:
-            self.stats.score += self.settings.alien_points
+            for alines in collisions.values():
+                self.stats.score += self.settings.alien_points
             self.sb.prep_score()
 
         # If there are no aliens left, repopulate fleet
